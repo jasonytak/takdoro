@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "engines": {
-    "yarn": "1.12.3"
+    "yarn": "1.12.3",
+    "node": "11.5.0"
   },
   "scripts": {
     "client-install": "yarn install --prefix client",
