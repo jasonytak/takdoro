@@ -9,7 +9,7 @@
     "server": "nodemon server.js",
     "client": "yarn start --prefix client",
     "dev": "concurrently \"yarn run server\" \"yarn run client\"",
-    "heroku-postbuild": "YARN_PRODUCTION=false yarn install --prefix client && yarn run build --prefix client"
+    "heroku-postbuild": "YARN_PRODUCTION=false yarn install --prefix client && yarn build --prefix client"
   },
   "dependencies": {
     "concurrently": "^4.1.0",
