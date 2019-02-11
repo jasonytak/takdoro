@@ -3,7 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "client-install": "yarn install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "yarn start --prefix client",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+  },
   "dependencies": {
+    "concurrently": "^4.1.0",
     "express": "^4.16.4"
   },
   "devDependencies": {
