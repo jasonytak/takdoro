@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class LoginPage extends Component {
   state = { user: '' };
 
-  onFormSubmit = (e) => {
-    e.preventDefault();
-  }
+  onFormSubmit = event => {
+    event.preventDefault();
+  };
 
   render() {
     return (
@@ -17,7 +17,10 @@ class LoginPage extends Component {
               type="text"
               value={this.state.user}
               maxLength={2}
-              onChange={e => this.setState({ user: e.target.value })}
+              placeholder="Enter Initials..."
+              onChange={e =>
+                this.setState({ user: e.target.value.toUpperCase() })
+              }
             />
           </div>
         </form>
