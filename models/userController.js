@@ -2,7 +2,7 @@ const User = require('./User');
 
 const userController = {};
 
-userController.saveAndFind = async (req, res, next) => {
+userController.saveAndFind = async (req, res) => {
   await User.create({ user: req.body.user });
   await User.find({}, (err, user) => {
     if (err) throw err;
