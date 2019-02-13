@@ -13,7 +13,7 @@ class LoginPage extends Component {
     return (
       <div className="ui container middle centered aligned one column grid">
         <div className="ui text container row">
-          <h1>WELCOME TO THE WORLD TIMER</h1>
+          <h1>WELCOME TO THE GLOBAL WORK TIMER</h1>
         </div>
         <div className="ui text container row">
           AT THE START OF EVERY HOUR, WORK FOR 25 MINUTES. THEN BREAK FOR 5.
@@ -23,23 +23,25 @@ class LoginPage extends Component {
           SLOWLY BUT SURELY YOU'LL FINISH WHATEVER YOU NEED TO DO.
         </div>
         <div id="text-field" className="row">
-        <form onSubmit={this.onFormSubmit} className="ui form">
-          <div className="field">
-            <label>ENTER YOUR INITIALS TO JOIN IN AT ANY TIME</label>
-            <input
-              type="text"
-              value={this.state.user}
-              maxLength={2}
-              placeholder="Enter Initials..."
-              onChange={e =>
-                this.setState({ user: e.target.value.toUpperCase() })
-              }
-            />
-          </div>
-          <button className="ui button row" type="submit">
-            Submit
-          </button>
-        </form>
+          <form onSubmit={this.onFormSubmit} className="ui form">
+            <div className="field">
+              <label className="ui text container row">
+                ENTER YOUR INITIALS TO JOIN IN AT ANY TIME
+              </label>
+              <input
+                type="text"
+                value={this.state.user}
+                maxLength={2}
+                placeholder="Enter Initials"
+                onChange={e =>
+                  this.setState({ user: e.target.value.toUpperCase() })
+                }
+              />
+            </div>
+            <button className="mini ui button row" type="submit">
+              <span>JOIN THE SESSION</span>
+            </button>
+          </form>
         </div>
       </div>
     );
