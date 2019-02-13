@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 const keys = require('./config/keys');
+const userController = require('./models/userController');
 
 mongoose.connect(keys.mongoURI);
 
@@ -11,6 +12,8 @@ const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.post('/user', userController.saveAndFind);
 
 // Heroku will inject product env variables
 // Will redirect any unknown routes, and will send index.html as a response
