@@ -5,12 +5,13 @@ class LoginPage extends Component {
 
   onFormSubmit = event => {
     event.preventDefault();
+    this.props.onSubmit(this.state.user);
   };
 
   render() {
     return (
       <div className="login-container">
-        <form className="ui form">
+        <form onSubmit={this.onFormSubmit} className="ui form">
           <div className="field">
             <label>ENTER YOUR INITIALS TO JOIN IN AT ANY TIME</label>
             <input
@@ -23,6 +24,9 @@ class LoginPage extends Component {
               }
             />
           </div>
+          <button className="ui button" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     );
