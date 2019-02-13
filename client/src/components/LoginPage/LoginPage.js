@@ -1,3 +1,4 @@
+import './LoginPage.css';
 import React, { Component } from 'react';
 
 class LoginPage extends Component {
@@ -10,7 +11,18 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div className="login-container">
+      <div className="ui container middle centered aligned one column grid">
+        <div className="ui text container row">
+          <h1>WELCOME TO THE WORLD TIMER</h1>
+        </div>
+        <div className="ui text container row">
+          AT THE START OF EVERY HOUR, WORK FOR 25 MINUTES. THEN BREAK FOR 5.
+          REPEAT THIS AT EVERY HALF HOUR AND HOUR.
+        </div>
+        <div className="ui text container row">
+          SLOWLY BUT SURELY YOU'LL FINISH WHATEVER YOU NEED TO DO.
+        </div>
+        <div id="text-field" className="row">
         <form onSubmit={this.onFormSubmit} className="ui form">
           <div className="field">
             <label>ENTER YOUR INITIALS TO JOIN IN AT ANY TIME</label>
@@ -24,10 +36,11 @@ class LoginPage extends Component {
               }
             />
           </div>
-          <button className="ui button" type="submit">
+          <button className="ui button row" type="submit">
             Submit
           </button>
         </form>
+        </div>
       </div>
     );
   }
