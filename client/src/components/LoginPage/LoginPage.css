@@ -15,9 +15,16 @@ h1 {
 }
 
 #text-field input {
-  width: 110px;
+  width: 130px;
   text-align: center;
   background-color: #40bf80;
+  font-family: 'Amatic SC', cursive;
+  font-size: 20px;
+}
+
+#text-field ::placeholder {
+  color: red;
+  font-weight: 900;
 }
 
 #text-field button {

@@ -20,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <LoginPage onSubmit={this.onSubmit } />
+        <LoginPage onSubmit={this.onSubmit} />
       </div>
     );
   }
