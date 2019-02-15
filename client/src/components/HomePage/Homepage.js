@@ -1,11 +1,7 @@
-import './HomePage.css';
 import React from 'react';
-import CountdownControl from '../CountdownControl/CountdownControl';
 
 const HomePage = () => {
-  return (
-    <div><CountdownControl /></div>
-  );
-}
+  return <div>Hello</div>;
+};
 
 export default HomePage;
