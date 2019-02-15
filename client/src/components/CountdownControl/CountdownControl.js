@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Countdown from '../Countdown/Countdown';
+import Countdown from 'react-countdown-now';
 
 class CountdownControl extends Component {
-  state = { seconds: 2500 };
+  state = { minutes: null, seconds: null, counter: 0 };
 
   componentDidMount() {
     this.onLoad();
@@ -13,64 +13,58 @@ class CountdownControl extends Component {
     axios
       .get('/time')
       .then(res => {
-        console.log(res.data.seconds);
-        this.setState({ seconds: res.data.seconds });
+        let minutes = this.convertMinutes(res.data.mins);
+        let seconds = this.convertSeconds(res.data.secs);
+        console.log(minutes, seconds);
+        this.setState({ minutes, seconds });
       })
       .catch(error => console.log(error.response));
   };
 
+  convertMinutes = mins => {
+    let minutes;
+    if (mins >= 0 && mins < 5) {
+      minutes = 4 - mins;
+    }
+    if (mins >= 5 && mins < 30) {
+      minutes = 29 - mins;
+    }
+    if (mins >= 30 && mins < 35) {
+      minutes = 34 - mins;
+    }
+    if (mins >= 35 && mins < 60) {
+      minutes = 59 - mins;
+    }
+    return minutes * 60000;
+  };
+
+  convertSeconds = secs => {
+    let seconds;
+    seconds = 60 - secs;
+    seconds = seconds * 1000;
+    return seconds;
+  };
+
   render() {
-    if (this.state.seconds === null) {
+    if (this.state.seconds === null || this.state.minutes === null) {
       return <div>Loading...</div>;
     }
-
     return (
       <div>
-        <Countdown count={this.state.seconds} />
+        <Countdown
+          date={Date.now() + this.state.minutes + this.state.seconds}
+          key={this.state.counter}
+          onComplete={() =>
+            this.setState({
+              minutes: 3,
+              seconds: 30,
+              counter: this.state.counter + 1
+            })
+          }
+        />
       </div>
     );
   }
 }
 
 export default CountdownControl;
-
-// if (this.state.seconds === null) {
-//   return <div>Loading...</div>;
-// }
-
-// if (this.state.seconds === 10) {
-//   return (
-//     <ReactCountdownClock seconds={10} onComplete={this.restartTimer} />
-//   );
-// }
-
-// if (this.state.seconds === 15) {
-//   return (
-//     <ReactCountdownClock
-//       seconds={this.state.seconds}
-//       onComplete={this.resetFiveTimer}
-//     />
-//   );
-// }
-
-// if (this.state.seconds >= 0 && this.state.seconds < 1500) {
-//   return (
-//     <ReactCountdownClock
-//       seconds={1500 - this.state.seconds}
-//       onComplete={this.restartTimer}
-//     />
-//   );
-// }
-
-// if (this.state.seconds >= 1800 && this.state.seconds < 3300) {
-//   return (
-//     <ReactCountdownClock
-//       seconds={3300 - this.state.seconds}
-//       onComplete={this.resetFiveTimer}
-//     />
-//   );
-// }
-
-// if (this.state.seconds >= 3300 && this.state.seconds < 3600) {
-//   return <ReactCountdownClock seconds={3600 - this.state.seconds} />;
-// }
