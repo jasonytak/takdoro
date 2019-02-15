@@ -15,7 +15,6 @@ class CountdownControl extends Component {
       .then(res => {
         let minutes = this.convertMinutes(res.data.mins);
         let seconds = this.convertSeconds(res.data.secs);
-        console.log(minutes, seconds);
         this.setState({ minutes, seconds });
       })
       .catch(error => console.log(error.response));
