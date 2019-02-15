@@ -14,7 +14,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/time', (req, res) => {
-  res.locals.seconds = new Date().getMinutes() + new Date().getSeconds();
+  res.locals.mins = new Date().getMinutes();
+  res.locals.secs = new Date().getSeconds();
   res.send(res.locals);
 });
 
