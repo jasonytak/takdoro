@@ -1,4 +1,4 @@
-import './BreakTimer.css';
+import './WorkTimer.css';
 import React from 'react';
 import Countdown from 'react-countdown-now';
 
@@ -6,7 +6,7 @@ const renderer = ({ minutes, seconds }) => {
   return (
     <div className="ui container middle centered aligned one column grid">
       <div className="ui text container row">
-        <h1 className="ui header">Break Time Remaining:</h1>
+        <h1 className="ui header">Work Time Remaining:</h1>
       </div>
       <div className="ui text container row">{minutes} Minutes</div>
       <div className="ui text container row">{seconds} Seconds</div>
@@ -14,9 +14,9 @@ const renderer = ({ minutes, seconds }) => {
   );
 };
 
-const BreakTimer = props => {
+const WorkTimer = props => {
   return (
-    <div id="break-timer">
+    <div id="work-timer">
       <Countdown
         date={props.date}
         key={props.key}
@@ -27,4 +27,4 @@ const BreakTimer = props => {
   );
 };
 
-export default BreakTimer;
+export default WorkTimer;

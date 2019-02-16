@@ -1,0 +1,17 @@
+h1.ui.header {
+  font-family: 'Amatic SC', cursive;
+  color: white;
+}
+
+#work-timer {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.ui.text.container.row {
+  padding: 2px;
+}
