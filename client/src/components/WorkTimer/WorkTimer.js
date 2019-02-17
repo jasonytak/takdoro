@@ -14,13 +14,13 @@ const renderer = ({ minutes, seconds }) => {
   );
 };
 
-const WorkTimer = props => {
+const WorkTimer = ({ date, key, onComplete }) => {
   return (
-    <div id="work-timer">
+    <div className="work-timer">
       <Countdown
-        date={props.date}
-        key={props.key}
-        onComplete={props.onComplete}
+        date={date}
+        key={key}
+        onComplete={onComplete}
         renderer={renderer}
       />
     </div>

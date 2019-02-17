@@ -14,13 +14,13 @@ const renderer = ({ minutes, seconds }) => {
   );
 };
 
-const BreakTimer = props => {
+const BreakTimer = ({ date, key, onComplete }) => {
   return (
-    <div id="break-timer">
+    <div className="break-timer">
       <Countdown
-        date={props.date}
-        key={props.key}
-        onComplete={props.onComplete}
+        date={date}
+        key={key}
+        onComplete={onComplete}
         renderer={renderer}
       />
     </div>
