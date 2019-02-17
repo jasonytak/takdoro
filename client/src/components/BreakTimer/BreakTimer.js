@@ -14,12 +14,11 @@ const renderer = ({ minutes, seconds }) => {
   );
 };
 
-const BreakTimer = ({ date, key, onComplete }) => {
+const BreakTimer = ({ date, onComplete }) => {
   return (
     <div className="break-timer">
       <Countdown
         date={date}
-        key={key}
         onComplete={onComplete}
         renderer={renderer}
       />
