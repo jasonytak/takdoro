@@ -1,6 +1,9 @@
-.login-page {
+html, body, #background { min-height: 100vh; min-width: 100vw; background-color:#002266;}
+
+
+/* .login-page {
   background-color: #002266;
-}
+} */
 
 .ui.text.container.row, h1, #textfield {
   font-family: 'Amatic SC', cursive;
