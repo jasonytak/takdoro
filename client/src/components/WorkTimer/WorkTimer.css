@@ -3,7 +3,7 @@ h1.ui.header {
   color: white;
 }
 
-#work-timer {
+.work-timer {
   margin: 0;
   position: absolute;
   top: 50%;
