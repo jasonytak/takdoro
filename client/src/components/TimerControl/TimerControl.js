@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Countdown from 'react-countdown-now';
 import BreakTimer from '../BreakTimer/BreakTimer';
 import WorkTimer from '../WorkTimer/WorkTimer';
 
@@ -44,7 +43,7 @@ class TimerControl extends Component {
 
   // Converts seconds from server to proper milliseconds for timer
   convertSeconds = secs => {
-    // Handles edge case when user starts at exactly 12:00
+    // Handles edge case when user starts at exactly 0 seconds
     if (secs === 0) return 1;
     let seconds;
     seconds = 60 - secs;
@@ -52,84 +51,76 @@ class TimerControl extends Component {
     return seconds;
   };
 
+  resetWorkTimer = () => {
+    this.setState({
+      serverMinutes: null,
+      minutes: 1500000,
+      seconds: 0,
+      counter: this.state.counter + 1
+    });
+  };
+
+  resetBreakTimer = () => {
+    this.setState({
+      serverMinutes: null,
+      minutes: 300000,
+      seconds: 0,
+      counter: this.state.counter + 1
+    });
+  };
+
   render() {
-    //Conditional rendering - waiting for onLoad()
+    // Conditional rendering - waiting for onLoad()
     if (this.state.minutes === null || this.state.seconds === null) {
       return <div>Loading...</div>;
     }
 
+    // Determines what timestamp to set the timer's ending time
+    // Timer compares timerDate to Date.now() thus counting down
+    const timerDate = Date.now() + this.state.minutes + this.state.seconds;
+
+    // Condition to determine if server time is during break periods
     if (this.state.serverMinutes >= 25 && this.state.serverMinutes <= 29) {
       return (
-        <div>
-          <BreakTimer
-            date={Date.now() + this.state.minutes + this.state.seconds}
-            key={this.state.counter}
-            onComplete={() =>
-              this.setState({
-                serverMinutes: null,
-                minutes: 1500000,
-                seconds: 0,
-                counter: this.state.counter + 1
-              })
-            }
-          />
-        </div>
+        <BreakTimer
+          date={timerDate}
+          key={this.state.counter}
+          onComplete={this.resetWorkTimer}
+        />
       );
     }
 
+    // Condition to determine if server time is during break periods
     if (this.state.serverMinutes >= 55 && this.state.serverMinutes <= 59) {
       return (
-        <div>
-          <BreakTimer
-            date={Date.now() + this.state.minutes + this.state.seconds}
-            key={this.state.counter}
-            onComplete={() =>
-              this.setState({
-                serverMinutes: null,
-                minutes: 1500000,
-                seconds: 0,
-                counter: this.state.counter + 1
-              })
-            }
-          />
-        </div>
+        <BreakTimer
+          date={timerDate}
+          key={this.state.counter}
+          onComplete={this.resetWorkTimer}
+        />
       );
     }
 
+    // Once user goes through one cycle of either WorkTimer or BreakTimer,
+    // serverMinutes will be set to null again, and react will swtich between
+    // BreakTimer and WorkTimer components
     if (this.state.serverMinutes === null && this.state.minutes === 300000) {
       return (
-        <div>
-          <BreakTimer
-            date={Date.now() + this.state.minutes + this.state.seconds}
-            key={this.state.counter}
-            onComplete={() =>
-              this.setState({
-                serverMinutes: null,
-                minutes: 1500000,
-                seconds: 0,
-                counter: this.state.counter + 1
-              })
-            }
-          />
-        </div>
+        <BreakTimer
+          date={timerDate}
+          key={this.state.counter}
+          onComplete={this.resetWorkTimer}
+        />
       );
     }
 
+    // If time is not during break periods, set a new WorkTimer
     return (
-      <div>
-        <WorkTimer
-          date={Date.now() + this.state.minutes + this.state.seconds}
-          key={this.state.counter}
-          onComplete={() =>
-            this.setState({
-              serverMinutes: null,
-              minutes: 300000,
-              seconds: 0,
-              counter: this.state.counter + 1
-            })
-          }
-        />
-      </div>
+      <WorkTimer
+        date={timerDate}
+        key={this.state.counter}
+        onComplete={this.resetBreakTimer}
+      />
     );
   }
 }
