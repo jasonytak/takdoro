@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import LoginPage from '../LoginPage/LoginPage';
 import HomePage from '../HomePage/Homepage';
 import axios from 'axios';
@@ -16,19 +16,22 @@ class App extends Component {
           return { users };
         })
       )
+      .then(() => this.props.history.push('/home'))
       .catch(error => console.log(error.response));
   };
 
   render() {
     return (
-      <Router>
-        <div className="app">
-          <Route exact path="/" component={LoginPage} />
-          <Route path="/home" component={HomePage} />
-        </div>
-      </Router>
+      <div className="app">
+        <Route
+          exact
+          path="/"
+          render={props => <LoginPage {...props} onSubmit={this.onSubmit} />}
+        />
+        <Route path="/home" component={HomePage} />
+      </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
