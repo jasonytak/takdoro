@@ -23,7 +23,7 @@ class LoginPage extends Component {
           <div className="ui text container row">
             SLOWLY BUT SURELY YOU'LL FINISH WHATEVER YOU NEED TO DO.
           </div>
-          <div id="text-field" className="row">
+          <div className="row">
             <form onSubmit={this.onFormSubmit} className="ui form">
               <div className="field">
                 <label className="ui text container row">
