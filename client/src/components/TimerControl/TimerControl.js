@@ -4,7 +4,7 @@ import BreakTimer from '../BreakTimer/BreakTimer';
 import WorkTimer from '../WorkTimer/WorkTimer';
 
 class TimerControl extends Component {
-  state = { serverMinutes: null, minutes: null, seconds: null, counter: 0 };
+  state = { serverMinutes: null, minutes: null, seconds: 10000, counter: 0 };
 
   componentDidMount() {
     this.onLoad();
@@ -52,6 +52,7 @@ class TimerControl extends Component {
   };
 
   resetWorkTimer = () => {
+    this.props.changeWorkBackground();
     this.setState({
       serverMinutes: null,
       minutes: 1500000,
@@ -61,6 +62,7 @@ class TimerControl extends Component {
   };
 
   resetBreakTimer = () => {
+    this.props.changeBreakBackground();
     this.setState({
       serverMinutes: null,
       minutes: 300000,
@@ -113,7 +115,6 @@ class TimerControl extends Component {
         />
       );
     }
-
     // If time is not during break periods, set a new WorkTimer
     return (
       <WorkTimer

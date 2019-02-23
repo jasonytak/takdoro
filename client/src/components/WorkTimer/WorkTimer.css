@@ -1,17 +1,23 @@
-.work-timer {
-  margin: 0;
+/* .work-timer {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+  background-color: red;
+  height: 100%;
+  width: 100%;
+} */
+
+div.row {
+  font-family: 'Amatic SC', cursive;
+  font-size: 25px;
+  color: #ffcc33;
+  padding: 10px;
 }
 
-h1.ui.header {
+.work-timer.h1.header {
   font-family: 'Amatic SC', cursive;
   color: white;
 }
 
-.ui.text.container.row {
-  padding: 2px;
+h1.header {
+  font-family: 'Amatic SC', cursive;
+  color: white;
 }
