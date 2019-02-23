@@ -28,7 +28,10 @@ class App extends Component {
           path="/"
           render={props => <LoginPage {...props} onSubmit={this.onSubmit} />}
         />
-        <Route path="/home" component={HomePage} />
+        <Route
+          path="/home"
+          render={props => <HomePage {...props} users={this.state.users} />}
+        />
       </div>
     );
   }
