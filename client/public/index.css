@@ -1,7 +1,4 @@
-html,
-body,
-#background {
-  min-height: 100vh;
-  min-width: 100vw;
-  background-color: #002266;
+html, body {
+  height: 100%;
+  width: 100%;
 }
