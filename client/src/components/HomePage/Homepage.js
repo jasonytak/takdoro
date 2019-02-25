@@ -36,19 +36,4 @@ class HomePage extends Component {
   }
 }
 
-// const HomePage = props => {
-//   return (
-//     <div className="home-page">
-//       <div className="ui container middle centered aligned one column grid">
-//         <div className="row">
-//           <TimerControl />
-//         </div>
-//         <div className="row">
-//           <UserList users={props.users} />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
 export default HomePage;

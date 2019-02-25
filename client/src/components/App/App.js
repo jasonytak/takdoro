@@ -8,25 +8,16 @@ import io from 'socket.io-client';
 const socket = io('http://localhost:5000');
 
 class App extends Component {
-  state = { users: [], _id: null };
-
-  connection = () => {
-    socket.emit('hello');
-  };
+  state = { users: [], socketID: null };
 
   componentDidMount() {
-    this.connection();
+    socket.on('socketID', (socketID) => this.setState({socketID}));
   }
 
   onSubmit = user => {
     axios
       .post('/user', { user })
-      .then(res => {
-        this.setState({ _id: res.data._id });
-      })
-      .then(axios
-              .get('/find')
-              .then(res => this.setState({ users: res.data})))
+      .then(axios.get('/find').then(res => this.setState({ users: res.data })))
       .then(() => this.props.history.push('/home'))
       .catch(error => console.log(error.response));
   };
