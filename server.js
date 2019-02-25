@@ -27,10 +27,16 @@ app.get('/time', (req, res) => {
   res.send(res.locals);
 });
 
-// Route to save user initials and retreive list of current users
+app.get('/find', userController.findCurrentUsers);
+
 app.post('/user', userController.createUser);
 
-app.get('/find', userController.findCurrentUsers);
+app.post('/test', (req, res) => {
+  console.log('req', req.body);
+  console.log('res', res.body);
+});
+
+// app.post('/delete', userController.deleteUser);
 
 // Heroku will inject product env variables
 // Will redirect any unknown routes, and will send index.html as a response
@@ -42,9 +48,12 @@ if (process.env.NODE === 'production') {
 }
 
 io.on('connection', (socket) => {
-  console.log('user connected');
-  socket.on('hello', () => console.log('HELLO'));
-  socket.on('disconnect', () => console.log('Client disconnected'));
+  console.log('connected');
+  socket.emit('socketID', socket.id);
+  socket.on('disconnect', () => console.log(socket.id));
+  // socket.on('disconnect', () => {
+  //   io.emit('deleteUser');
+  // });
 });
 
 server.listen(PORT);
