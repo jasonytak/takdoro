@@ -3,7 +3,7 @@ const User = require('./User');
 const userController = {};
 
 userController.createUser = (req, res) => {
-  User.create({ user: req.body.user }, (err, user) => {
+  User.create({ user: req.body.user, socketID: req.body.socketID }, (err, user) => {
     if (err) throw err;
     res.send(user);
   });
@@ -16,6 +16,19 @@ userController.findCurrentUsers = (req, res) => {
   });
 };
 
+userController.deleteUser = async (socketID) => {
+  await User.deleteOne({ socketID }, (err) => {
+    if (err) throw err;
+  });
+};
+
+userController.createAndFind = async (req, res) => {
+  await User.create({ user: req.body.user, socketID: req.body.socketID });
+  await User.find({}, (err, user) => {
+    if (err) throw err;
+    res.send(user);
+  });
+};
 // userController.saveAndFind = async (req, res) => {
 //   await User.create({ user: req.body.user });
 //   await User.find({}, (err, user) => {

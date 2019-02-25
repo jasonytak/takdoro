@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
   user: String,
+  socketID: String,
 });
 
 const User = mongoose.model('user', userSchema);

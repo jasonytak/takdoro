@@ -29,12 +29,7 @@ app.get('/time', (req, res) => {
 
 app.get('/find', userController.findCurrentUsers);
 
-app.post('/user', userController.createUser);
-
-app.post('/test', (req, res) => {
-  console.log('req', req.body);
-  console.log('res', res.body);
-});
+app.post('/user', userController.createAndFind);
 
 // app.post('/delete', userController.deleteUser);
 
@@ -50,7 +45,10 @@ if (process.env.NODE === 'production') {
 io.on('connection', (socket) => {
   console.log('connected');
   socket.emit('socketID', socket.id);
-  socket.on('disconnect', () => console.log(socket.id));
+  socket.on('disconnect', () => {
+    userController.deleteUser(socket.id);
+    io.emit('update');
+  });
   // socket.on('disconnect', () => {
   //   io.emit('deleteUser');
   // });

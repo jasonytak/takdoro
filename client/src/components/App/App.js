@@ -12,12 +12,13 @@ class App extends Component {
 
   componentDidMount() {
     socket.on('socketID', (socketID) => this.setState({socketID}));
+    socket.on('update', () => axios.get('/find').then(res => this.setState({users:res.data})));
   }
 
   onSubmit = user => {
     axios
-      .post('/user', { user })
-      .then(axios.get('/find').then(res => this.setState({ users: res.data })))
+      .post('/user', { user, socketID: this.state.socketID })
+      .then(res => this.setState({ users: res.data}))
       .then(() => this.props.history.push('/home'))
       .catch(error => console.log(error.response));
   };
