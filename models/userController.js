@@ -10,16 +10,14 @@ userController.createUser = (req, res) => {
 };
 
 userController.findCurrentUsers = (req, res) => {
-  User.find({}, (err, user) => {
+  User.find({}, (err, users) => {
     if (err) throw err;
-    res.send(user);
+    res.send(users);
   });
 };
 
 // userController.saveAndFind = async (req, res) => {
-//   await User.create({ user: req.body.user }, (err, user) => {
-//     console.log(user);
-//   });
+//   await User.create({ user: req.body.user });
 //   await User.find({}, (err, user) => {
 //     if (err) throw err;
 //     res.send(user);
