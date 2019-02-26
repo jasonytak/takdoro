@@ -5,7 +5,7 @@ import HomePage from '../HomePage/Homepage';
 import axios from 'axios';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://mighty-peak-22764.herokuapp.com');
 
 class App extends Component {
   state = { users: [], socketID: null };

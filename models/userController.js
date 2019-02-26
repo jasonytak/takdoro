@@ -2,15 +2,15 @@ const User = require('./User');
 
 const userController = {};
 
-userController.createUser = (req, res) => {
-  User.create({ user: req.body.user, socketID: req.body.socketID }, (err, user) => {
+userController.createUser = async (req, res) => {
+  await User.create({ user: req.body.user, socketID: req.body.socketID }, (err, user) => {
     if (err) throw err;
     res.send(user);
   });
 };
 
-userController.findCurrentUsers = (req, res) => {
-  User.find({}, (err, users) => {
+userController.findCurrentUsers = async (req, res) => {
+  await User.find({}, (err, users) => {
     if (err) throw err;
     res.send(users);
   });
@@ -29,12 +29,5 @@ userController.createAndFind = async (req, res) => {
     res.send(user);
   });
 };
-// userController.saveAndFind = async (req, res) => {
-//   await User.create({ user: req.body.user });
-//   await User.find({}, (err, user) => {
-//     if (err) throw err;
-//     res.send(user);
-//   });
-// };
 
 module.exports = userController;
