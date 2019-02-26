@@ -5,21 +5,24 @@ import HomePage from '../HomePage/Homepage';
 import axios from 'axios';
 import io from 'socket.io-client';
 
-const socket = io('https://mighty-peak-22764.herokuapp.com/');
+const socket = io('http://localhost:5000');
 
 class App extends Component {
   state = { users: [], socketID: null };
 
   componentDidMount() {
-    socket.on('socketID', (socketID) => this.setState({socketID}));
-    socket.on('update', () => axios.get('/find').then(res => this.setState({users:res.data})));
+    socket.on('socketID', socketID => this.setState({ socketID }));
+    socket.on('update', () =>
+      axios.get('/find').then(res => this.setState({ users: res.data }))
+    );
   }
 
   onSubmit = user => {
     axios
       .post('/user', { user, socketID: this.state.socketID })
-      .then(res => this.setState({ users: res.data}))
+      .then(res => this.setState({ users: res.data }))
       .then(() => this.props.history.push('/home'))
+      .then(() => socket.emit('update-all'))
       .catch(error => console.log(error.response));
   };
 

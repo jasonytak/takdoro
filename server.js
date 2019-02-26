@@ -31,8 +31,6 @@ app.get('/find', userController.findCurrentUsers);
 
 app.post('/user', userController.createAndFind);
 
-// app.post('/delete', userController.deleteUser);
-
 // Heroku will inject product env variables
 // Will redirect any unknown routes, and will send index.html as a response
 if (process.env.NODE === 'production') {
@@ -45,6 +43,11 @@ if (process.env.NODE === 'production') {
 io.on('connection', (socket) => {
   console.log('connected');
   socket.emit('socketID', socket.id);
+
+  socket.on('update-all', () => {
+    socket.broadcast.emit('update');
+  });
+
   socket.on('disconnect', () => {
     userController.deleteUser(socket.id);
     io.emit('update');
