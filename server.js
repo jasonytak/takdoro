@@ -33,10 +33,10 @@ app.post('/user', userController.createAndFind);
 
 // Heroku will inject product env variables
 // Will redirect any unknown routes, and will send index.html as a response
-if (process.env.NODE === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
-  app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build/index.html'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
 
