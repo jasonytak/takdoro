@@ -35,8 +35,8 @@ app.post('/user', userController.createAndFind);
 // Will redirect any unknown routes, and will send index.html as a response
 if (process.env.NODE === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build/index.html'));
   });
 }
 
@@ -52,9 +52,6 @@ io.on('connection', (socket) => {
     userController.deleteUser(socket.id);
     io.emit('update');
   });
-  // socket.on('disconnect', () => {
-  //   io.emit('deleteUser');
-  // });
 });
 
 server.listen(PORT);
