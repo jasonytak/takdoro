@@ -9,7 +9,7 @@ class TimerControl extends Component {
   componentDidMount() {
     this.onLoad();
   }
-
+ 
   // Requests time data from server
   onLoad = () => {
     axios

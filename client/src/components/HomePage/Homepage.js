@@ -2,9 +2,17 @@ import './HomePage.css';
 import React, { Component } from 'react';
 import TimerControl from '../TimerControl/TimerControl';
 import UserList from '../UserList/UserList';
+import Bell from '../Bell/Bell';
+import { Redirect } from 'react-router';
 
 class HomePage extends Component {
   state = { backgroundColor: '#002266' };
+
+  componentWillMount() {
+    if (this.props.users.length === 0) {
+      this.props.history.push('/');
+    }
+  }
 
   changeBreakBackground = () => {
     this.setState({ backgroundColor: 'blue' });
@@ -15,6 +23,11 @@ class HomePage extends Component {
   };
 
   render() {
+
+    if (this.props.users.length === 0) {
+      return <Redirect to="/" />
+    }
+    
     return (
       <div
         style={{ backgroundColor: this.state.backgroundColor }}
@@ -22,6 +35,7 @@ class HomePage extends Component {
       >
         <div className="ui container middle centered aligned one column grid">
           <div className="row">
+            <Bell />
             <TimerControl
               changeBreakBackground={this.changeBreakBackground}
               changeWorkBackground={this.changeWorkBackground}
