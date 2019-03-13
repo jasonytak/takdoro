@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import BreakTimer from '../BreakTimer/BreakTimer';
 import WorkTimer from '../WorkTimer/WorkTimer';
+import Bell from '../Bell/Bell';
 
 class TimerControl extends Component {
   state = { serverMinutes: null, minutes: null, seconds: 10000, counter: 0 };
@@ -9,7 +10,7 @@ class TimerControl extends Component {
   componentDidMount() {
     this.onLoad();
   }
- 
+
   // Requests time data from server
   onLoad = () => {
     axios
@@ -84,22 +85,28 @@ class TimerControl extends Component {
     // Condition to determine if server time is during break periods
     if (this.state.serverMinutes >= 25 && this.state.serverMinutes <= 29) {
       return (
-        <BreakTimer
-          date={timerDate}
-          key={this.state.counter}
-          onComplete={this.resetWorkTimer}
-        />
+        <div>
+          <Bell />
+          <BreakTimer
+            date={timerDate}
+            key={this.state.counter}
+            onComplete={this.resetWorkTimer}
+          />
+        </div>
       );
     }
 
     // Condition to determine if server time is during break periods
     if (this.state.serverMinutes >= 55 && this.state.serverMinutes <= 59) {
       return (
-        <BreakTimer
-          date={timerDate}
-          key={this.state.counter}
-          onComplete={this.resetWorkTimer}
-        />
+        <div>
+          <Bell />
+          <BreakTimer
+            date={timerDate}
+            key={this.state.counter}
+            onComplete={this.resetWorkTimer}
+          />
+        </div>
       );
     }
 
@@ -108,20 +115,26 @@ class TimerControl extends Component {
     // BreakTimer and WorkTimer components
     if (this.state.serverMinutes === null && this.state.minutes === 300000) {
       return (
-        <BreakTimer
-          date={timerDate}
-          key={this.state.counter}
-          onComplete={this.resetWorkTimer}
-        />
+        <div>
+          <Bell />
+          <BreakTimer
+            date={timerDate}
+            key={this.state.counter}
+            onComplete={this.resetWorkTimer}
+          />
+        </div>
       );
     }
     // If time is not during break periods, set a new WorkTimer
     return (
-      <WorkTimer
-        date={timerDate}
-        key={this.state.counter}
-        onComplete={this.resetBreakTimer}
-      />
+      <div>
+        <Bell />
+        <WorkTimer
+          date={timerDate}
+          key={this.state.counter}
+          onComplete={this.resetBreakTimer}
+        />
+      </div>
     );
   }
 }
