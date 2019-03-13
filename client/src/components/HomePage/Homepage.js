@@ -2,7 +2,6 @@ import './HomePage.css';
 import React, { Component } from 'react';
 import TimerControl from '../TimerControl/TimerControl';
 import UserList from '../UserList/UserList';
-import Bell from '../Bell/Bell';
 import { Redirect } from 'react-router';
 
 class HomePage extends Component {
@@ -35,7 +34,6 @@ class HomePage extends Component {
       >
         <div className="ui container middle centered aligned one column grid">
           <div className="row">
-            <Bell />
             <TimerControl
               changeBreakBackground={this.changeBreakBackground}
               changeWorkBackground={this.changeWorkBackground}
