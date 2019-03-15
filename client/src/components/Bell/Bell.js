@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
+import Sound from 'react-sound';
 import sound from './Bell.wav';
 
 class Bell extends Component {
+
   render() {
-    return (
-      <div>
-        <audio autoPlay src={sound}/>
-      </div>
-    );
+    return <Sound url={sound} playStatus={Sound.status.PLAYING} />;
   }
 }
 

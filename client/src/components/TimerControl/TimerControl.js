@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import BreakTimer from '../BreakTimer/BreakTimer';
 import WorkTimer from '../WorkTimer/WorkTimer';
-// import Bell from '../Bell/Bell';
+import Bell from '../Bell/Bell';
 
 class TimerControl extends Component {
   state = { serverMinutes: null, minutes: null, seconds: 10000, counter: 0 };
@@ -114,6 +114,7 @@ class TimerControl extends Component {
     if (this.state.serverMinutes === null && this.state.minutes === 300000) {
       return (
         <div>
+          <Bell />
           <BreakTimer
             date={timerDate}
             key={this.state.counter}
@@ -125,6 +126,7 @@ class TimerControl extends Component {
     // If time is not during break periods, set a new WorkTimer
     return (
       <div>
+        <Bell />
         <WorkTimer
           date={timerDate}
           key={this.state.counter}
