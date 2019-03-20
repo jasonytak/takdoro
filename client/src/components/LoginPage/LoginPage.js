@@ -1,4 +1,4 @@
-import './LoginPage.css';
+import './LoginPage.css'
 import React, { Component } from 'react';
 
 class LoginPage extends Component {
@@ -12,7 +12,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div className="login-page">
-        <div className="ui container middle centered aligned one column grid">
+        <div className="ui container middle centered aligned grid">
           <div className="ui text container row">
             <h1>WELCOME TO THE GLOBAL WORK TIMER</h1>
           </div>
@@ -27,19 +27,18 @@ class LoginPage extends Component {
             <form onSubmit={this.onFormSubmit} className="ui form">
               <div className="field">
                 <label className="ui text container row">
-                  ENTER YOUR INITIALS TO JOIN IN AT ANY TIME
+                  ENTER YOUR INITIALS TO JOIN IN AT ANY TIME.
                 </label>
                 <input
                   type="text"
                   value={this.state.user}
                   maxLength={2}
-                  placeholder="Enter Initials"
                   onChange={e =>
                     this.setState({ user: e.target.value.toUpperCase() })
                   }
                 />
               </div>
-              <button className="mini ui button row" type="submit">
+              <button className="mini ui button" type="submit">
                 <span>JOIN THE SESSION</span>
               </button>
             </form>
