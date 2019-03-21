@@ -1,3 +1,4 @@
+import './HomePage.css';
 import React, { Component } from 'react';
 import TimerControl from '../TimerControl/TimerControl';
 import UserList from '../UserList/UserList';
