@@ -1,4 +1,3 @@
-import './App.css';
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import LoginPage from '../LoginPage/LoginPage';
