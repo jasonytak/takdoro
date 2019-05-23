@@ -11,6 +11,7 @@ class App extends Component {
   state = { users: [], socketID: null };
 
   componentDidMount() {
+    // Establishes socket ID once user has loaded site
     socket.on('socketID', socketID => this.setState({ socketID }));
     socket.on('update', () =>
       axios.get('/find').then(res => this.setState({ users: res.data }))
@@ -18,6 +19,8 @@ class App extends Component {
   }
 
   onSubmit = user => {
+    // Sends socketID to database to allow live user tracking
+    // Emits new socketID to all connected users
     axios
       .post('/user', { user, socketID: this.state.socketID })
       .then(res => this.setState({ users: res.data }))

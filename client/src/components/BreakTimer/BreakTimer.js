@@ -2,6 +2,7 @@ import './BreakTimer.css';
 import React from 'react';
 import Countdown from 'react-countdown-now';
 
+// Renderer function for timer package
 const renderer = ({ minutes, seconds }) => {
   return (
     <div className="break-timer">

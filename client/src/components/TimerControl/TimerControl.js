@@ -24,7 +24,7 @@ class TimerControl extends Component {
       .catch(error => console.log(error.response));
   };
 
-  // Converts minutes sent from server to proper milliseconds for timer
+  // Converts minutes sent from server to proper milliseconds for timer package
   convertMinutes = mins => {
     let minutes;
     if (mins >= 0 && mins <= 24) {
@@ -109,8 +109,7 @@ class TimerControl extends Component {
     }
 
     // Once user goes through one cycle of either WorkTimer or BreakTimer,
-    // serverMinutes will be set to null again, and react will swtich between
-    // BreakTimer and WorkTimer components
+    // serverMinutes will be set to null again and will switch between components
     if (this.state.serverMinutes === null && this.state.minutes === 300000) {
       return (
         <div>

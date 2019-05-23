@@ -44,10 +44,12 @@ io.on('connection', (socket) => {
   console.log('connected');
   socket.emit('socketID', socket.id);
 
+  // Updates all users when a new socketID is established
   socket.on('update-all', () => {
     socket.broadcast.emit('update');
   });
 
+  // When user disconnects, emit event that removes user from all connected users
   socket.on('disconnect', () => {
     userController.deleteUser(socket.id);
     io.emit('update');

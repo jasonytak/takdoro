@@ -16,11 +16,10 @@ class HomePage extends Component {
   };
 
   render() {
-
     if (this.props.users.length === 0) {
-      return <Redirect to="/" />
+      return <Redirect to="/" />;
     }
-    
+
     return (
       <div
         style={{ backgroundColor: this.state.backgroundColor }}
