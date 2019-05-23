@@ -7,12 +7,6 @@ import { Redirect } from 'react-router';
 class HomePage extends Component {
   state = { backgroundColor: '#002266' };
 
-  // componentWillMount() {
-  //   if (this.props.users.length === 0) {
-  //     this.props.history.push('/');
-  //   }
-  // }
-
   changeBreakBackground = () => {
     this.setState({ backgroundColor: '#E2924D' });
   };
